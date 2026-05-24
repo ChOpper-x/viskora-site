@@ -2,4 +2,4 @@
 
 Main website for Viskora.
 
-Viskora builds simple tools for visibility, accountability, and personal operating clarity.
+Viskora builds simple tools for visibility, tracking, accountability, and personal operating clarity.

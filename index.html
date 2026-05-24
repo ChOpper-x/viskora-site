@@ -3,402 +3,266 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Viskora</title>
-  <meta name="description" content="Viskora builds clear, accountable tools for tracking what matters.">
-  <style>
-    :root {
-      --ink: #111715;
-      --muted: #5e6963;
-      --paper: #f7f5ef;
-      --panel: #fffdf8;
-      --line: #ded8ca;
-      --green: #174f43;
-      --gold: #b8914f;
-      --soft: #e9efe9;
-      --shadow: 0 28px 80px rgba(17, 23, 21, 0.12);
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      margin: 0;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      color: var(--ink);
-      background: var(--paper);
-    }
-
-    a {
-      color: inherit;
-    }
-
-    .shell {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-
-    header {
-      width: min(1120px, calc(100% - 40px));
-      margin: 0 auto;
-      padding: 24px 0;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-    }
-
-    .brand {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      text-decoration: none;
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      font-size: 20px;
-    }
-
-    .mark {
-      width: 34px;
-      height: 34px;
-      border-radius: 12px;
-      background:
-        linear-gradient(135deg, rgba(255,255,255,0.42), transparent 42%),
-        linear-gradient(135deg, var(--green), #082c27);
-      display: grid;
-      place-items: center;
-      color: #fff;
-      font-size: 16px;
-      box-shadow: 0 12px 24px rgba(23, 79, 67, 0.18);
-    }
-
-    nav {
-      display: flex;
-      align-items: center;
-      gap: 18px;
-      color: var(--muted);
-      font-size: 14px;
-      font-weight: 700;
-    }
-
-    nav a {
-      text-decoration: none;
-    }
-
-    .hero {
-      width: min(1120px, calc(100% - 40px));
-      margin: 0 auto;
-      flex: 1;
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) 430px;
-      gap: 54px;
-      align-items: center;
-      padding: 56px 0 80px;
-    }
-
-    .eyebrow {
-      margin: 0 0 18px;
-      color: var(--green);
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      font-size: 12px;
-      font-weight: 800;
-    }
-
-    h1 {
-      margin: 0;
-      max-width: 780px;
-      font-size: clamp(46px, 8vw, 88px);
-      line-height: 0.95;
-      letter-spacing: -0.07em;
-      font-weight: 850;
-    }
-
-    .lead {
-      max-width: 620px;
-      margin: 24px 0 0;
-      color: var(--muted);
-      font-size: clamp(18px, 2vw, 22px);
-      line-height: 1.5;
-    }
-
-    .actions {
-      margin-top: 34px;
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-
-    .button {
-      min-height: 48px;
-      padding: 0 18px;
-      border-radius: 999px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      text-decoration: none;
-      font-size: 14px;
-      font-weight: 800;
-      border: 1px solid transparent;
-    }
-
-    .button.primary {
-      color: #fff;
-      background: var(--green);
-      box-shadow: 0 18px 34px rgba(23, 79, 67, 0.2);
-    }
-
-    .button.secondary {
-      color: var(--green);
-      background: rgba(255, 255, 255, 0.54);
-      border-color: var(--line);
-    }
-
-    .product {
-      border: 1px solid var(--line);
-      border-radius: 26px;
-      background: var(--panel);
-      box-shadow: var(--shadow);
-      padding: 18px;
-      min-height: 520px;
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
-
-    .window {
-      border-radius: 20px;
-      background: #16241f;
-      color: #f6f1e6;
-      padding: 18px;
-      min-height: 180px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      overflow: hidden;
-      position: relative;
-    }
-
-    .window::after {
-      content: "";
-      position: absolute;
-      width: 180px;
-      height: 180px;
-      right: -80px;
-      bottom: -80px;
-      border-radius: 50%;
-      background: rgba(184, 145, 79, 0.24);
-    }
-
-    .window strong {
-      font-size: 34px;
-      letter-spacing: -0.06em;
-      line-height: 1;
-      max-width: 260px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .window span {
-      color: #c9d7d0;
-      font-size: 13px;
-      font-weight: 700;
-      position: relative;
-      z-index: 1;
-    }
-
-    .metric-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-    }
-
-    .metric {
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      padding: 15px;
-      background: #fbfaf5;
-      min-height: 112px;
-    }
-
-    .metric span {
-      display: block;
-      color: var(--muted);
-      font-size: 12px;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
-
-    .metric strong {
-      display: block;
-      margin-top: 18px;
-      font-size: 28px;
-      letter-spacing: -0.05em;
-    }
-
-    .list {
-      margin-top: auto;
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      overflow: hidden;
-      background: #fbfaf5;
-    }
-
-    .row {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 14px;
-      padding: 14px 15px;
-      border-bottom: 1px solid var(--line);
-      font-size: 14px;
-    }
-
-    .row:last-child {
-      border-bottom: 0;
-    }
-
-    .row span {
-      color: var(--muted);
-    }
-
-    .sections {
-      width: min(1120px, calc(100% - 40px));
-      margin: 0 auto 56px;
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 18px;
-    }
-
-    .section {
-      padding: 22px;
-      border-top: 1px solid var(--line);
-    }
-
-    .section h2 {
-      margin: 0;
-      font-size: 20px;
-      letter-spacing: -0.03em;
-    }
-
-    .section p {
-      margin: 10px 0 0;
-      color: var(--muted);
-      line-height: 1.6;
-      font-size: 15px;
-    }
-
-    footer {
-      width: min(1120px, calc(100% - 40px));
-      margin: 0 auto;
-      padding: 26px 0 34px;
-      border-top: 1px solid var(--line);
-      display: flex;
-      justify-content: space-between;
-      gap: 16px;
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    @media (max-width: 860px) {
-      header {
-        align-items: flex-start;
-      }
-
-      nav {
-        display: none;
-      }
-
-      .hero {
-        grid-template-columns: 1fr;
-        padding-top: 30px;
-      }
-
-      .product {
-        min-height: 0;
-      }
-
-      .sections {
-        grid-template-columns: 1fr;
-      }
-
-      footer {
-        flex-direction: column;
-      }
-    }
-  </style>
+  <title>Viskora | Visibility for personal finance and accountability</title>
+  <meta name="description" content="Viskora builds clear, accountable personal tools for tracking spending, routines, records, and decisions.">
+  <meta name="theme-color" content="#123f36">
+  <meta property="og:title" content="Viskora">
+  <meta property="og:description" content="Simple tools for visibility, tracking, and accountability.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.viskora.com">
+  <meta name="twitter:card" content="summary">
+  <link rel="canonical" href="https://www.viskora.com">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="shell">
-    <header>
-      <a class="brand" href="/">
-        <span class="mark">V</span>
-        <span>Viskora</span>
-      </a>
-      <nav aria-label="Main navigation">
-        <a href="#products">Products</a>
-        <a href="https://spend.viskora.com">Viskora Spend</a>
-      </nav>
-    </header>
+  <header class="site-header">
+    <a class="brand" href="/" aria-label="Viskora home">
+      <span class="brand-mark" aria-hidden="true">V</span>
+      <span>Viskora</span>
+    </a>
 
-    <main class="hero">
-      <section>
-        <p class="eyebrow">Visibility and accountability</p>
-        <h1>See what matters. Stay in control.</h1>
-        <p class="lead">Viskora builds simple tools that help people track activity, understand patterns, and make better decisions with less noise.</p>
-        <div class="actions">
-          <a class="button primary" href="https://spend.viskora.com">Open Viskora Spend</a>
-          <a class="button secondary" href="#products">View products</a>
-        </div>
-      </section>
+    <nav class="desktop-nav" aria-label="Primary navigation">
+      <a href="#products">Products</a>
+      <a href="#principles">Principles</a>
+      <a href="#roadmap">Roadmap</a>
+      <a href="#faq">FAQ</a>
+    </nav>
 
-      <aside class="product" aria-label="Viskora product preview">
-        <div class="window">
-          <span>Viskora Spend</span>
-          <strong>Monthly spending, made visible.</strong>
-        </div>
-        <div class="metric-grid">
-          <div class="metric">
-            <span>Tracked</span>
-            <strong>₹42.8k</strong>
+    <a class="nav-action" href="https://spend.viskora.com">Open Spend</a>
+  </header>
+
+  <main>
+    <section class="hero section-band">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">Visibility for everyday accountability</p>
+          <h1>Track what matters before it turns into guesswork.</h1>
+          <p class="hero-lead">Viskora builds personal tools that make money, habits, records, and decisions easier to see, review, and act on.</p>
+
+          <div class="hero-actions">
+            <a class="button button-primary" href="https://spend.viskora.com">Try Viskora Spend</a>
+            <a class="button button-secondary" href="#products">Explore products</a>
           </div>
-          <div class="metric">
-            <span>Remaining</span>
-            <strong>₹17.2k</strong>
+
+          <dl class="proof-strip" aria-label="Viskora focus areas">
+            <div>
+              <dt>01</dt>
+              <dd>Personal tracking</dd>
+            </div>
+            <div>
+              <dt>02</dt>
+              <dd>Clear review loops</dd>
+            </div>
+            <div>
+              <dt>03</dt>
+              <dd>Accountable action</dd>
+            </div>
+          </dl>
+        </div>
+
+        <div class="product-visual" aria-label="Viskora Spend dashboard preview">
+          <div class="visual-topbar">
+            <span>Viskora Spend</span>
+            <strong>May 2026</strong>
+          </div>
+          <div class="visual-hero">
+            <span>Monthly visibility</span>
+            <strong>INR 42,800</strong>
+            <small>tracked across 28 entries</small>
+          </div>
+          <div class="visual-metrics">
+            <div>
+              <span>Remaining</span>
+              <strong>INR 17,200</strong>
+            </div>
+            <div>
+              <span>Budget used</span>
+              <strong>71%</strong>
+            </div>
+          </div>
+          <div class="visual-list">
+            <div class="visual-row">
+              <span>Groceries</span>
+              <strong>INR 12,400</strong>
+            </div>
+            <div class="visual-row">
+              <span>Recurring payments</span>
+              <strong>8 active</strong>
+            </div>
+            <div class="visual-row">
+              <span>Highest spend day</span>
+              <strong>24 May</strong>
+            </div>
           </div>
         </div>
-        <div class="list">
-          <div class="row"><span>Recurring payments</span><strong>8</strong></div>
-          <div class="row"><span>Highest category</span><strong>Groceries</strong></div>
-          <div class="row"><span>Budget usage</span><strong>71%</strong></div>
-        </div>
-      </aside>
-    </main>
-
-    <section class="sections" id="products">
-      <article class="section">
-        <h2>Track clearly</h2>
-        <p>Capture the daily details without turning personal finance into a spreadsheet project.</p>
-      </article>
-      <article class="section">
-        <h2>Spot patterns</h2>
-        <p>Understand where money goes, what repeats, and what is changing month by month.</p>
-      </article>
-      <article class="section">
-        <h2>Act sooner</h2>
-        <p>Use simple visibility to stay accountable before small spending leaks become bigger problems.</p>
-      </article>
+      </div>
     </section>
 
-    <footer>
-      <span>© 2026 Viskora</span>
-      <span>Built for clarity, visibility, and accountability.</span>
-    </footer>
-  </div>
+    <section class="section-band section-light" id="products">
+      <div class="container split-section">
+        <div>
+          <p class="eyebrow">First product</p>
+          <h2>Viskora Spend</h2>
+          <p class="section-lead">A simple monthly spend tracker for people who want control without heavy finance software.</p>
+        </div>
+
+        <div class="feature-grid">
+          <article class="feature-card">
+            <span class="feature-number">01</span>
+            <h3>Daily expense capture</h3>
+            <p>Add spending with date, amount, category, payment mode, and optional notes.</p>
+          </article>
+          <article class="feature-card">
+            <span class="feature-number">02</span>
+            <h3>Budget visibility</h3>
+            <p>See used budget, remaining balance, highest spend, category totals, and monthly progress.</p>
+          </article>
+          <article class="feature-card">
+            <span class="feature-number">03</span>
+            <h3>Patterns and accountability</h3>
+            <p>Review trends, heatmaps, recurring expenses, category thresholds, and exportable history.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-band">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">Why Viskora</p>
+          <h2>Built for visibility first.</h2>
+          <p>Most people do not need more noise. They need a clear record, a simple rhythm, and a way to notice what changed.</p>
+        </div>
+
+        <div class="benefit-grid">
+          <article class="benefit-item">
+            <h3>Know where you stand</h3>
+            <p>Turn scattered daily activity into a single view you can review in minutes.</p>
+          </article>
+          <article class="benefit-item">
+            <h3>Catch drift early</h3>
+            <p>Spot repeated spending, budget pressure, and category creep before the month gets away.</p>
+          </article>
+          <article class="benefit-item">
+            <h3>Keep your data portable</h3>
+            <p>Start local-first, export when needed, and avoid being locked into a black box.</p>
+          </article>
+          <article class="benefit-item">
+            <h3>Stay accountable</h3>
+            <p>Make ownership obvious: what happened, when it happened, and what needs attention next.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-band section-dark" id="principles">
+      <div class="container principle-grid">
+        <div>
+          <p class="eyebrow eyebrow-invert">Product principles</p>
+          <h2>Calm tools for clear decisions.</h2>
+        </div>
+
+        <div class="principle-list">
+          <div class="principle-row">
+            <span>Visibility over vanity</span>
+            <p>Every screen should help you understand status, movement, or ownership.</p>
+          </div>
+          <div class="principle-row">
+            <span>Useful before complex</span>
+            <p>Simple workflows come first. Power features should not make the basics harder.</p>
+          </div>
+          <div class="principle-row">
+            <span>Personal data stays respected</span>
+            <p>Clear exports, transparent storage, and careful handling matter from the start.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-band section-light" id="roadmap">
+      <div class="container roadmap-grid">
+        <div class="section-heading section-heading-left">
+          <p class="eyebrow">What comes next</p>
+          <h2>A practical product path.</h2>
+          <p>Viskora starts with spending visibility, then expands toward broader personal accountability tools.</p>
+        </div>
+
+        <ol class="timeline">
+          <li>
+            <span>Now</span>
+            <strong>Viskora Spend web app</strong>
+            <p>Monthly expense tracking, budgets, category thresholds, recurring expenses, CSV export, and backup import.</p>
+          </li>
+          <li>
+            <span>Next</span>
+            <strong>Mobile-first polish</strong>
+            <p>Cleaner install flow, app icon, better onboarding, stronger reminders, and app-store packaging.</p>
+          </li>
+          <li>
+            <span>Later</span>
+            <strong>More accountability tools</strong>
+            <p>Personal dashboards for routines, records, checklists, and other things people need to keep visible.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section-band" id="faq">
+      <div class="container faq-grid">
+        <div class="section-heading section-heading-left">
+          <p class="eyebrow">FAQ</p>
+          <h2>Questions people may ask first.</h2>
+        </div>
+
+        <div class="faq-list">
+          <details open>
+            <summary>What is Viskora?</summary>
+            <p>Viskora is a product brand for simple tracking, visibility, and accountability tools. The first product is Viskora Spend.</p>
+          </details>
+          <details>
+            <summary>What is Viskora Spend?</summary>
+            <p>Viskora Spend is a monthly spend tracker for recording expenses, budgets, categories, recurring payments, and trends.</p>
+          </details>
+          <details>
+            <summary>Is Viskora only for finance?</summary>
+            <p>No. Finance is the first use case. The wider brand can support any personal tool where visibility and accountability matter.</p>
+          </details>
+          <details>
+            <summary>Where is my data stored?</summary>
+            <p>The current spend tracker stores data in your browser. You can export CSV files and JSON backups from the app.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-band cta-band">
+      <div class="container cta-panel">
+        <div>
+          <p class="eyebrow">Start with spending clarity</p>
+          <h2>Open Viskora Spend and make this month visible.</h2>
+        </div>
+        <a class="button button-primary" href="https://spend.viskora.com">Open Viskora Spend</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <a class="brand footer-brand" href="/">
+          <span class="brand-mark" aria-hidden="true">V</span>
+          <span>Viskora</span>
+        </a>
+        <p>Simple visibility and accountability tools for everyday decisions.</p>
+      </div>
+      <div class="footer-links">
+        <a href="https://spend.viskora.com">Viskora Spend</a>
+        <a href="/privacy.html">Privacy</a>
+        <a href="/terms.html">Terms</a>
+        <a href="/support.html">Support</a>
+      </div>
+      <p class="copyright">&copy; 2026 Viskora. All rights reserved.</p>
+    </div>
+  </footer>
 </body>
 </html>
