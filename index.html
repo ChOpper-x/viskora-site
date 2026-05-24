@@ -12,6 +12,9 @@
   <meta property="og:url" content="https://www.viskora.com">
   <meta name="twitter:card" content="summary">
   <link rel="canonical" href="https://www.viskora.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Source+Sans+3:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -32,9 +35,9 @@
   </header>
 
   <main>
-    <section class="hero section-band">
+    <section class="hero section-band reveal-section">
       <div class="container hero-grid">
-        <div class="hero-copy">
+        <div class="hero-copy reveal-item">
           <p class="eyebrow">Visibility for everyday accountability</p>
           <h1>Track what matters before it turns into guesswork.</h1>
           <p class="hero-lead">Viskora builds personal tools that make money, habits, records, and decisions easier to see, review, and act on.</p>
@@ -44,7 +47,7 @@
             <a class="button button-secondary" href="#products">Explore products</a>
           </div>
 
-          <dl class="proof-strip" aria-label="Viskora focus areas">
+          <dl class="proof-strip reveal-item" aria-label="Viskora focus areas">
             <div>
               <dt>01</dt>
               <dd>Personal tracking</dd>
@@ -60,7 +63,8 @@
           </dl>
         </div>
 
-        <div class="product-visual" aria-label="Viskora Spend dashboard preview">
+        <div class="product-visual reveal-item" data-float-card aria-label="Viskora Spend dashboard preview">
+          <div class="scan-line" aria-hidden="true"></div>
           <div class="visual-topbar">
             <span>Viskora Spend</span>
             <strong>May 2026</strong>
@@ -74,10 +78,12 @@
             <div>
               <span>Remaining</span>
               <strong>INR 17,200</strong>
+              <div class="mini-meter" aria-hidden="true"><span style="width: 62%"></span></div>
             </div>
             <div>
               <span>Budget used</span>
               <strong>71%</strong>
+              <div class="mini-meter" aria-hidden="true"><span style="width: 71%"></span></div>
             </div>
           </div>
           <div class="visual-list">
@@ -98,26 +104,41 @@
       </div>
     </section>
 
-    <section class="section-band section-light" id="products">
+    <div class="motion-ribbon" aria-hidden="true">
+      <div class="motion-track">
+        <span>Track daily spend</span>
+        <span>Review patterns</span>
+        <span>Spot drift early</span>
+        <span>Keep records visible</span>
+        <span>Stay accountable</span>
+        <span>Track daily spend</span>
+        <span>Review patterns</span>
+        <span>Spot drift early</span>
+        <span>Keep records visible</span>
+        <span>Stay accountable</span>
+      </div>
+    </div>
+
+    <section class="section-band section-light reveal-section" id="products">
       <div class="container split-section">
-        <div>
+        <div class="section-copy reveal-item">
           <p class="eyebrow">First product</p>
           <h2>Viskora Spend</h2>
           <p class="section-lead">A simple monthly spend tracker for people who want control without heavy finance software.</p>
         </div>
 
         <div class="feature-grid">
-          <article class="feature-card">
+          <article class="feature-card reveal-item">
             <span class="feature-number">01</span>
             <h3>Daily expense capture</h3>
             <p>Add spending with date, amount, category, payment mode, and optional notes.</p>
           </article>
-          <article class="feature-card">
+          <article class="feature-card reveal-item">
             <span class="feature-number">02</span>
             <h3>Budget visibility</h3>
             <p>See used budget, remaining balance, highest spend, category totals, and monthly progress.</p>
           </article>
-          <article class="feature-card">
+          <article class="feature-card reveal-item">
             <span class="feature-number">03</span>
             <h3>Patterns and accountability</h3>
             <p>Review trends, heatmaps, recurring expenses, category thresholds, and exportable history.</p>
@@ -126,28 +147,28 @@
       </div>
     </section>
 
-    <section class="section-band">
+    <section class="section-band reveal-section">
       <div class="container">
-        <div class="section-heading">
+        <div class="section-heading reveal-item">
           <p class="eyebrow">Why Viskora</p>
           <h2>Built for visibility first.</h2>
           <p>Most people do not need more noise. They need a clear record, a simple rhythm, and a way to notice what changed.</p>
         </div>
 
         <div class="benefit-grid">
-          <article class="benefit-item">
+          <article class="benefit-item reveal-item">
             <h3>Know where you stand</h3>
             <p>Turn scattered daily activity into a single view you can review in minutes.</p>
           </article>
-          <article class="benefit-item">
+          <article class="benefit-item reveal-item">
             <h3>Catch drift early</h3>
             <p>Spot repeated spending, budget pressure, and category creep before the month gets away.</p>
           </article>
-          <article class="benefit-item">
+          <article class="benefit-item reveal-item">
             <h3>Keep your data portable</h3>
             <p>Start local-first, export when needed, and avoid being locked into a black box.</p>
           </article>
-          <article class="benefit-item">
+          <article class="benefit-item reveal-item">
             <h3>Stay accountable</h3>
             <p>Make ownership obvious: what happened, when it happened, and what needs attention next.</p>
           </article>
@@ -155,23 +176,23 @@
       </div>
     </section>
 
-    <section class="section-band section-dark" id="principles">
+    <section class="section-band section-dark reveal-section" id="principles">
       <div class="container principle-grid">
-        <div>
+        <div class="reveal-item">
           <p class="eyebrow eyebrow-invert">Product principles</p>
           <h2>Calm tools for clear decisions.</h2>
         </div>
 
         <div class="principle-list">
-          <div class="principle-row">
+          <div class="principle-row reveal-item">
             <span>Visibility over vanity</span>
             <p>Every screen should help you understand status, movement, or ownership.</p>
           </div>
-          <div class="principle-row">
+          <div class="principle-row reveal-item">
             <span>Useful before complex</span>
             <p>Simple workflows come first. Power features should not make the basics harder.</p>
           </div>
-          <div class="principle-row">
+          <div class="principle-row reveal-item">
             <span>Personal data stays respected</span>
             <p>Clear exports, transparent storage, and careful handling matter from the start.</p>
           </div>
@@ -179,26 +200,35 @@
       </div>
     </section>
 
-    <section class="section-band section-light" id="roadmap">
+    <div class="signal-band" aria-hidden="true">
+      <div class="container signal-grid">
+        <span>Record</span>
+        <span>Review</span>
+        <span>Notice</span>
+        <span>Act</span>
+      </div>
+    </div>
+
+    <section class="section-band section-light reveal-section" id="roadmap">
       <div class="container roadmap-grid">
-        <div class="section-heading section-heading-left">
+        <div class="section-heading section-heading-left reveal-item">
           <p class="eyebrow">What comes next</p>
           <h2>A practical product path.</h2>
           <p>Viskora starts with spending visibility, then expands toward broader personal accountability tools.</p>
         </div>
 
         <ol class="timeline">
-          <li>
+          <li class="reveal-item">
             <span>Now</span>
             <strong>Viskora Spend web app</strong>
             <p>Monthly expense tracking, budgets, category thresholds, recurring expenses, CSV export, and backup import.</p>
           </li>
-          <li>
+          <li class="reveal-item">
             <span>Next</span>
             <strong>Mobile-first polish</strong>
             <p>Cleaner install flow, app icon, better onboarding, stronger reminders, and app-store packaging.</p>
           </li>
-          <li>
+          <li class="reveal-item">
             <span>Later</span>
             <strong>More accountability tools</strong>
             <p>Personal dashboards for routines, records, checklists, and other things people need to keep visible.</p>
@@ -207,27 +237,27 @@
       </div>
     </section>
 
-    <section class="section-band" id="faq">
+    <section class="section-band reveal-section" id="faq">
       <div class="container faq-grid">
-        <div class="section-heading section-heading-left">
+        <div class="section-heading section-heading-left reveal-item">
           <p class="eyebrow">FAQ</p>
           <h2>Questions people may ask first.</h2>
         </div>
 
         <div class="faq-list">
-          <details open>
+          <details class="reveal-item" open>
             <summary>What is Viskora?</summary>
             <p>Viskora is a product brand for simple tracking, visibility, and accountability tools. The first product is Viskora Spend.</p>
           </details>
-          <details>
+          <details class="reveal-item">
             <summary>What is Viskora Spend?</summary>
             <p>Viskora Spend is a monthly spend tracker for recording expenses, budgets, categories, recurring payments, and trends.</p>
           </details>
-          <details>
+          <details class="reveal-item">
             <summary>Is Viskora only for finance?</summary>
             <p>No. Finance is the first use case. The wider brand can support any personal tool where visibility and accountability matter.</p>
           </details>
-          <details>
+          <details class="reveal-item">
             <summary>Where is my data stored?</summary>
             <p>The current spend tracker stores data in your browser. You can export CSV files and JSON backups from the app.</p>
           </details>
@@ -235,8 +265,8 @@
       </div>
     </section>
 
-    <section class="section-band cta-band">
-      <div class="container cta-panel">
+    <section class="section-band cta-band reveal-section">
+      <div class="container cta-panel reveal-item">
         <div>
           <p class="eyebrow">Start with spending clarity</p>
           <h2>Open Viskora Spend and make this month visible.</h2>
@@ -264,5 +294,6 @@
       <p class="copyright">&copy; 2026 Viskora. All rights reserved.</p>
     </div>
   </footer>
+  <script src="motion.js"></script>
 </body>
 </html>

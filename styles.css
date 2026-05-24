@@ -13,6 +13,8 @@
   --dark-2: #172621;
   --white: #ffffff;
   --shadow: 0 18px 48px rgba(17, 24, 22, 0.1);
+  --font-sans: "Source Sans 3", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-display: "Manrope", var(--font-sans);
 }
 
 * {
@@ -25,9 +27,13 @@ html {
 
 body {
   margin: 0;
-  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: var(--font-sans);
   color: var(--ink);
-  background: var(--bg);
+  background:
+    linear-gradient(rgba(18, 63, 54, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(18, 63, 54, 0.03) 1px, transparent 1px),
+    var(--bg);
+  background-size: 56px 56px;
 }
 
 a {
@@ -76,6 +82,7 @@ a {
   font-size: 16px;
   font-weight: 900;
   box-shadow: 0 10px 24px rgba(18, 63, 54, 0.18);
+  animation: markPulse 4.5s ease-in-out infinite;
 }
 
 .desktop-nav {
@@ -116,10 +123,17 @@ a {
   color: var(--green);
   background: var(--surface);
   border-color: var(--line);
+  transition: transform 180ms ease, border-color 180ms ease, color 180ms ease;
+}
+
+.nav-action:hover {
+  transform: translateY(-1px);
+  border-color: rgba(18, 63, 54, 0.34);
 }
 
 .section-band {
   padding: 88px 0;
+  position: relative;
 }
 
 .section-light {
@@ -130,6 +144,18 @@ a {
 
 .hero {
   padding-top: 72px;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  left: max(20px, calc((100vw - 1160px) / 2));
+  right: max(20px, calc((100vw - 1160px) / 2));
+  top: 26px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(18, 63, 54, 0.28), transparent);
+  animation: lineTravel 5s ease-in-out infinite;
 }
 
 .hero-grid {
@@ -162,16 +188,20 @@ p {
 h1 {
   margin: 0;
   max-width: 760px;
+  font-family: var(--font-display);
   font-size: 72px;
   line-height: 0.98;
   letter-spacing: 0;
+  font-weight: 850;
 }
 
 h2 {
   margin: 0;
+  font-family: var(--font-display);
   font-size: 42px;
   line-height: 1.08;
   letter-spacing: 0;
+  font-weight: 750;
 }
 
 h3 {
@@ -205,16 +235,25 @@ h3 {
   color: var(--white);
   background: var(--green);
   box-shadow: 0 16px 30px rgba(18, 63, 54, 0.18);
+  transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
 }
 
 .button-primary:hover {
   background: var(--green-2);
+  transform: translateY(-2px);
+  box-shadow: 0 20px 38px rgba(18, 63, 54, 0.22);
 }
 
 .button-secondary {
   color: var(--green);
   background: var(--surface);
   border-color: var(--line);
+  transition: transform 180ms ease, border-color 180ms ease;
+}
+
+.button-secondary:hover {
+  transform: translateY(-2px);
+  border-color: rgba(18, 63, 54, 0.32);
 }
 
 .proof-strip {
@@ -258,6 +297,34 @@ h3 {
   display: flex;
   flex-direction: column;
   gap: 12px;
+  position: relative;
+  overflow: hidden;
+  transform: perspective(900px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg));
+  transition: transform 220ms ease;
+}
+
+.product-visual::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px),
+    linear-gradient(rgba(18,63,54,0.04) 1px, transparent 1px);
+  background-size: 28px 28px;
+  opacity: 0.7;
+}
+
+.scan-line {
+  position: absolute;
+  z-index: 2;
+  left: 16px;
+  right: 16px;
+  height: 2px;
+  top: 72px;
+  background: linear-gradient(90deg, transparent, rgba(31, 107, 90, 0.65), transparent);
+  animation: scanDashboard 4.2s ease-in-out infinite;
+  pointer-events: none;
 }
 
 .visual-topbar,
@@ -293,12 +360,25 @@ h3 {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+  position: relative;
+  overflow: hidden;
+}
+
+.visual-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg, transparent 0%, rgba(255, 255, 255, 0.16) 46%, transparent 62%);
+  transform: translateX(-120%);
+  animation: sheen 5.5s ease-in-out infinite;
 }
 
 .visual-hero span,
 .visual-hero small {
   color: rgba(255, 255, 255, 0.72);
   font-weight: 800;
+  position: relative;
+  z-index: 1;
 }
 
 .visual-hero strong {
@@ -306,6 +386,8 @@ h3 {
   margin: 12px 0 4px;
   font-size: 36px;
   line-height: 1;
+  position: relative;
+  z-index: 1;
 }
 
 .visual-metrics {
@@ -339,6 +421,24 @@ h3 {
   font-size: 24px;
 }
 
+.mini-meter {
+  width: 100%;
+  height: 6px;
+  margin-top: 16px;
+  border-radius: 999px;
+  background: var(--surface-soft);
+  overflow: hidden;
+}
+
+.mini-meter span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--green), var(--green-2));
+  transform-origin: left;
+  animation: meterGrow 1.7s ease both;
+}
+
 .visual-list {
   margin-top: auto;
   overflow: hidden;
@@ -348,10 +448,16 @@ h3 {
   min-height: 58px;
   padding: 0 16px;
   border-bottom: 1px solid var(--line);
+  transition: background 180ms ease, transform 180ms ease;
 }
 
 .visual-row:last-child {
   border-bottom: 0;
+}
+
+.visual-row:hover {
+  background: var(--surface-soft);
+  transform: translateX(3px);
 }
 
 .split-section,
@@ -385,6 +491,16 @@ h3 {
   border: 1px solid var(--line);
   border-radius: 8px;
   background: var(--surface);
+  transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
+}
+
+.feature-card:hover,
+.benefit-item:hover,
+.timeline li:hover,
+details:hover {
+  transform: translateY(-4px);
+  border-color: rgba(18, 63, 54, 0.24);
+  box-shadow: 0 18px 40px rgba(17, 24, 22, 0.08);
 }
 
 .feature-card p,
@@ -427,7 +543,23 @@ h3 {
 
 .section-dark {
   color: var(--white);
-  background: var(--dark);
+  background:
+    linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px),
+    var(--dark);
+  background-size: 52px 52px;
+  overflow: hidden;
+}
+
+.section-dark::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(159, 209, 195, 0.42), transparent);
+  animation: lineTravel 5.5s ease-in-out infinite reverse;
 }
 
 .section-dark h2 {
@@ -469,6 +601,7 @@ h3 {
   border: 1px solid var(--line);
   border-radius: 8px;
   background: var(--surface);
+  transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
 }
 
 .timeline span {
@@ -493,6 +626,7 @@ details {
   border: 1px solid var(--line);
   border-radius: 8px;
   background: var(--surface);
+  transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
 }
 
 summary {
@@ -524,6 +658,17 @@ details p {
   align-items: center;
   justify-content: space-between;
   gap: 28px;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-panel::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 6px;
+  background: linear-gradient(90deg, rgba(255,255,255,0.12), rgba(255,255,255,0.5), rgba(255,255,255,0.12));
+  animation: ribbonSlide 4s linear infinite;
 }
 
 .cta-panel h2 {
@@ -592,6 +737,164 @@ details p {
 .legal-content li {
   color: var(--muted);
   line-height: 1.7;
+}
+
+.motion-ribbon {
+  overflow: hidden;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  background: var(--surface);
+}
+
+.motion-track {
+  width: max-content;
+  display: flex;
+  gap: 10px;
+  padding: 12px 0;
+  animation: ticker 28s linear infinite;
+}
+
+.motion-track span {
+  padding: 8px 12px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--green);
+  background: var(--surface-soft);
+  font-size: 13px;
+  font-weight: 850;
+  white-space: nowrap;
+}
+
+.signal-band {
+  padding: 20px 0;
+  background: var(--dark-2);
+  border-top: 1px solid rgba(255,255,255,0.08);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  overflow: hidden;
+}
+
+.signal-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.signal-grid span {
+  min-height: 74px;
+  border: 1px solid rgba(255,255,255,0.14);
+  border-radius: 8px;
+  color: #d8e6e0;
+  display: grid;
+  place-items: center;
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 800;
+  background: rgba(255,255,255,0.035);
+  animation: signalLift 4s ease-in-out infinite;
+}
+
+.signal-grid span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.signal-grid span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+.signal-grid span:nth-child(4) {
+  animation-delay: 0.6s;
+}
+
+.reveal-item,
+.reveal-section {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 700ms ease, transform 700ms ease;
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+.reveal-item.is-visible,
+.reveal-section.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes markPulse {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-2px);
+  }
+}
+
+@keyframes lineTravel {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scaleX(0.35);
+  }
+  50% {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+}
+
+@keyframes scanDashboard {
+  0%, 100% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+  18%, 82% {
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(390px);
+  }
+}
+
+@keyframes sheen {
+  0%, 58%, 100% {
+    transform: translateX(-120%);
+  }
+  72% {
+    transform: translateX(120%);
+  }
+}
+
+@keyframes meterGrow {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes ticker {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes signalLift {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes ribbonSlide {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(50%);
+  }
 }
 
 @media (max-width: 980px) {
@@ -669,7 +972,8 @@ details p {
   .proof-strip,
   .feature-grid,
   .benefit-grid,
-  .visual-metrics {
+  .visual-metrics,
+  .signal-grid {
     grid-template-columns: 1fr;
   }
 
@@ -711,5 +1015,22 @@ details p {
 
   .legal-content h1 {
     font-size: 40px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.001ms !important;
+  }
+
+  .reveal-item,
+  .reveal-section {
+    opacity: 1;
+    transform: none;
   }
 }
