@@ -396,14 +396,14 @@ h3 {
   gap: 12px;
 }
 
-.visual-metrics div,
+.visual-metrics > div,
 .visual-list {
   border: 1px solid var(--line);
   border-radius: 8px;
   background: #fbfcfb;
 }
 
-.visual-metrics div {
+.visual-metrics > div {
   min-height: 108px;
   padding: 16px;
 }
@@ -430,8 +430,9 @@ h3 {
   overflow: hidden;
 }
 
-.mini-meter span {
+.mini-meter > i {
   display: block;
+  width: 0;
   height: 100%;
   border-radius: inherit;
   background: linear-gradient(90deg, var(--green), var(--green-2));
